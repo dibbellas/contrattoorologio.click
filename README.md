@@ -115,6 +115,6 @@ Il sito e i modelli di contratto sono offerti gratuitamente, a solo scopo inform
 ## Contatti
 
 Alessandro Di Bella – info@contrattoorologio.click
-Segnalazioni di problemi o di dubbi sulla privacy: apri una [Issue](https://github.com/dibbellas/contrattoorologi.click/issues) in questo repository.
+Segnalazioni di problemi o di dubbi sulla privacy: apri una [Issue](https://github.com/dibbellas/contrattoorologio.click/issues) in questo repository.
 
 © 2026 Alessandro Di Bella. Il codice è pubblicato per trasparenza e verifica. Tutti i diritti riservati.

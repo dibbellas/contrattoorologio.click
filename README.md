@@ -54,7 +54,7 @@ Il contratto viene costruito **nel browser di chi lo compila** e stampato con la
 
 ### Content Security Policy
 
-La **Content Security Policy** è scritta in due punti: dentro `index.html` (tag `<meta http-equiv="Content-Security-Policy">`, quindi visibile a chiunque apra il codice della pagina e valida su qualsiasi hosting) e nelle intestazioni del server (`.htaccess` / `_headers`), che aggiungono le protezioni possibili solo lato server (HSTS, `frame-ancestors`, `X-Frame-Options`). La policy:
+La **Content Security Policy** completa è scritta dentro `index.html`, nel tag `<meta http-equiv="Content-Security-Policy">`: è visibile a chiunque apra il codice della pagina, vale su qualsiasi hosting e viaggia sempre insieme al codice che protegge. Le intestazioni del server (`.htaccess` / `_headers`) aggiungono le protezioni possibili solo lato server: HSTS, `frame-ancestors`, `X-Frame-Options`. La policy:
 
 - consente connessioni **solo** verso `cdn.jsdelivr.net` e i domini di Google Analytics (`connect-src`);
 - vieta l'invio di qualsiasi modulo (`form-action 'none'`);
@@ -63,7 +63,7 @@ La **Content Security Policy** è scritta in due punti: dentro `index.html` (tag
 
 In pratica, anche se qualcuno modificasse il sito per rubare dati, **sarebbe il browser stesso a bloccare l'invio** verso qualsiasi altro indirizzo.
 
-Se modifichi `index.html`, ricalcola gli hash e aggiorna in automatico `.htaccess`, `_headers` e il meta di `index.html`:
+Se modifichi lo script o lo stile di `index.html`, ricalcola gli hash e aggiorna in automatico il meta CSP:
 
 ```bash
 python3 tools/csp-hash.py --write

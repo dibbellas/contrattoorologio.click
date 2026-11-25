@@ -12,12 +12,13 @@ RewriteRule ^ https://contrattoorologio.click%{REQUEST_URI} [L,R=301]
 # 2. HTTPS obbligatorio anche nelle visite successive (HSTS, un anno)
 Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
 
-# 3. Content Security Policy: il browser blocca qualsiasi invio di dati verso siti non elencati.
-#    connect-src = gli unici indirizzi contattabili (elenco comuni + Google Analytics solo col consenso)
-#    form-action 'none' = nessun modulo può essere inviato da nessuna parte
-#    script-src / style-src = eseguiti solo lo script e lo stile di index.html (verificati con hash sha256)
-#    Dopo ogni modifica a index.html esegui: python3 tools/csp-hash.py --write
-Header set Content-Security-Policy "default-src 'none'; script-src 'sha256-v8ABIugMcyfv3hPfTSpOE7idHd121WnaHWnJSqyR9mY=' https://www.googletagmanager.com; style-src 'sha256-XEtX6KSBza7EpjloUb+jHXD33/Nz9kkFWilyp6YXjwc='; font-src 'self'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src https://cdn.jsdelivr.net https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; manifest-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests"
+# 3. Content Security Policy
+#    La policy completa (script, stili, connessioni consentite) è dentro index.html, nel tag
+#    <meta http-equiv="Content-Security-Policy">, così viaggia sempre insieme al codice che protegge.
+#    Qui ci sono solo le regole che funzionano esclusivamente come intestazione del server e non cambiano mai:
+#    frame-ancestors 'none' = il sito non può essere inserito dentro altre pagine
+#    form-action 'none'     = nessun modulo può essere inviato da nessuna parte
+Header set Content-Security-Policy "frame-ancestors 'none'; base-uri 'none'; form-action 'none'; object-src 'none'; upgrade-insecure-requests"
 
 # 4. Altre intestazioni di sicurezza
 Header set X-Content-Type-Options "nosniff"

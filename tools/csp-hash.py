@@ -2,8 +2,7 @@
 """Calcola gli hash sha256 di script e stili di index.html per la Content Security Policy.
 
 Uso:  python3 tools/csp-hash.py
-Sostituisci i valori 'sha256-...' in .htaccess e _headers con quelli stampati
-(il primo in script-src, il secondo in style-src).
+Con --write aggiorna da solo il tag <meta http-equiv="Content-Security-Policy"> di index.html.
 Chiunque può eseguirlo per verificare che gli hash pubblicati corrispondano al codice di questo repository.
 """
 import base64, hashlib, pathlib, re
@@ -15,13 +14,13 @@ for s in re.findall(r"<script>(.*?)</script>", html, re.S):
 for s in re.findall(r"<style>(.*?)</style>", html, re.S):
     print("style-src: ", h(s))
 
-# Con l'opzione --write aggiorna da solo .htaccess, _headers e il meta CSP di index.html
+# Con l'opzione --write aggiorna da solo il meta CSP di index.html
 import sys
 if "--write" in sys.argv:
     root = pathlib.Path(__file__).resolve().parent.parent
     sc = [h(s) for s in re.findall(r"<script>(.*?)</script>", html, re.S)]
     st = [h(s) for s in re.findall(r"<style>(.*?)</style>", html, re.S)]
-    for name in (".htaccess", "_headers", "index.html"):
+    for name in ("index.html",):
         p = root / name
         t = p.read_text(encoding="utf-8")
         t = re.sub(r"script-src (?:'sha256-[^']+' ?)+", "script-src " + " ".join(sc) + " ", t)

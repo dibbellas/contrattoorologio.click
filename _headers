@@ -2,7 +2,7 @@
 # Dopo ogni modifica a index.html esegui: python3 tools/csp-hash.py --write
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains
-  Content-Security-Policy: default-src 'none'; script-src 'sha256-v8ABIugMcyfv3hPfTSpOE7idHd121WnaHWnJSqyR9mY=' https://www.googletagmanager.com; style-src 'sha256-XEtX6KSBza7EpjloUb+jHXD33/Nz9kkFWilyp6YXjwc='; font-src 'self'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src https://cdn.jsdelivr.net https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; manifest-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'none'; script-src 'sha256-gEIxUsKsIvcYZ2ck95ZB2bQQGLO91qrzCcHTqrigqZE=' https://www.googletagmanager.com; style-src 'sha256-R1hWTScnhbhe8+Hkyj24dekJy70p+bRtOE4BJ77Xk+g='; font-src 'self'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src https://cdn.jsdelivr.net https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; manifest-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   X-XSS-Protection: 0

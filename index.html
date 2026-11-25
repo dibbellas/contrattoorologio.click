@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-3cCQsmr4QhBZ89DeYCG0UK5eUV+Fo+MNNk9WzFDDvXQ=' https://www.googletagmanager.com; style-src 'sha256-a8FH5BANkp/uEKZAfiSj3ItQ3pbkOBU6Q2A0UpawbTY='; font-src 'self'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src https://cdn.jsdelivr.net https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-nOkw+62rdaImCuKNJugAKGn/u0ebuyRDoreZTJ/d9Q8=' https://www.googletagmanager.com; style-src 'sha256-a8FH5BANkp/uEKZAfiSj3ItQ3pbkOBU6Q2A0UpawbTY='; font-src 'self'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src https://cdn.jsdelivr.net https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; manifest-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contratto compravendita orologio usato tra privati – Modulo gratuito PDF | ContrattoOrologio.click</title>
 <meta name="description" content="Compila gratis online la scrittura privata di compravendita o permuta di orologi usati tra privati: dati di venditore e compratore, referenza, matricola, full set, manleva, lecita provenienza e limiti di legge sul contante. Stampa o salva in PDF. Nessun dato salvato.">
@@ -851,12 +851,12 @@ function fitSheet(){const w=$('#sheetwrap'),s=$('#sheet');if(!$('#anteprima').cl
 window.addEventListener('resize',fitSheet);
 const PRINT_MAX_MM=262;
 function fitPrint(){const d=$('#doc');if(!d||!$('#anteprima').classList.contains('show'))return;d.style.zoom='';
-  const mm=d.getBoundingClientRect().height*25.4/96*(d.offsetWidth?186/(d.offsetWidth*25.4/96):1);
-  if(mm>PRINT_MAX_MM)d.style.zoom=String(Math.max(.7,PRINT_MAX_MM/mm))}
-function unfitPrint(){const d=$('#doc');if(d)d.style.zoom='';fitSheet()}
+  const wmm=d.offsetWidth*25.4/96;if(!wmm)return;const mm=d.offsetHeight*25.4/96*(186/wmm);
+  if(mm>PRINT_MAX_MM)d.style.zoom=String(Math.max(.7,PRINT_MAX_MM/mm));fitSheet()}
+function unfitPrint(){fitSheet()}
 window.addEventListener('beforeprint',fitPrint);window.addEventListener('afterprint',unfitPrint);
 try{const mq=matchMedia('print');mq.addEventListener('change',e=>e.matches?fitPrint():unfitPrint())}catch(_){}
-function show(html){$('#doc').innerHTML=html;$('#anteprima').classList.add('show');fitSheet();$('#anteprima').scrollIntoView({behavior:'smooth'})}
+function show(html){$('#doc').innerHTML=html;$('#anteprima').classList.add('show');fitPrint();$('#anteprima').scrollIntoView({behavior:'smooth'})}
 $('#fVendita').addEventListener('submit',e=>e.preventDefault());
 $('#fVendita [data-gen]').addEventListener('click',()=>{recalc();const ws=watches('vw');
   if(!checkPay('vp',ws.reduce((a,w)=>a+w.valore,0),$('#vPayNote'),ws.some(w=>isPrecious(w.materiale)))){$('#vPayNote').scrollIntoView({block:'center'});return}
